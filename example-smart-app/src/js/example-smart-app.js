@@ -27,6 +27,7 @@
         $.when(pt, obv).done(function(patient, obv) {
           console.log(`patient data :${JSON.stringify(patient)}`)
           var byCodes = smart.byCodes(obv, 'code');
+          console.log(`byCodes: ${JSON.stringify(byCodes)}`)
           var gender = patient.gender;
 
           var fname = '';
