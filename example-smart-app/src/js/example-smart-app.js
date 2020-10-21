@@ -7,6 +7,17 @@
       ret.reject();
     }
 
+    function getSmartApiFunctions(smart) {
+        var functions = {
+            writeMName: function() {
+                console.log(`TODO: write middle name using smart api!`)
+            }
+        }
+        return functions
+    }
+
+    var smartApiFunctions = null
+
     function onReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
@@ -62,6 +73,7 @@
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
+          smartApiFunctions = getSmartApiFunctions(smart)
           ret.resolve(p);
         });
       } else {
@@ -128,6 +140,13 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#mnamebutton').onclick = function() {
+        if (smartApiFunctions) {
+          smartApiFunctions.writeMName()
+        } else {
+          console.log(`BOO! smartApiFunctions is empty!`)
+        }
+    }
   };
 
 })(window);
