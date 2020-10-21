@@ -16,9 +16,10 @@
                 patient.active = !patient.active
                 var updatePromise = smart.api.update({ resource: patient })
                 console.log(`update called`)
-                updatePromise.then(function(r) {
-                    console.log(`updated: `, r)
-                }).catch(function(err) { console.log(`ERROR: `, err); })
+                $.when(updatePromise).done(function(r) {
+                  console.log(`updated: `, r)
+                })
+                $.when(updatePromise).fail(function(err) { console.log(`ERROR: `, err); })
             }
         }
         return functions
