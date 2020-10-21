@@ -1,4 +1,5 @@
 (function(window){
+  var smartApiFunctions = null
   window.extractData = function() {
     var ret = $.Deferred();
 
@@ -15,8 +16,6 @@
         }
         return functions
     }
-
-    var smartApiFunctions = null
 
     function onReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
