@@ -13,6 +13,12 @@
             writeMName: function({ patient }) {
                 var ptId = patient.id;
                 console.log(`TODO: write middle name using smart api to patient id: `, ptId)
+                patient.active = !patient.active
+                var updatePromise = smart.update({ resource: patient })
+                console.log(`update called`)
+                updatePromise.then(function(r) {
+                    console.log(`updated: `, r)
+                }).catch(function(err) { console.log(`ERROR: `, err); })
             }
         }
         return functions
