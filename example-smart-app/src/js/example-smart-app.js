@@ -128,15 +128,15 @@
     }
   }
 
-  function callSmartApiWriteMName(p) {
-    if (smartApiFunctions && smartApiFunctions.writeMName) {
-        smartApiFunctions.writeMName({ patient: p });
-    } else {
-        console.log(`Boo! smartApiFunctions is empty!`);
-    }
-  }
-
   window.drawVisualization = function(p) {
+    function callSmartApiWriteMName() {
+      if (smartApiFunctions && smartApiFunctions.writeMName) {
+        smartApiFunctions.writeMName({ patient: p });
+      } else {
+        console.log(`Boo! smartApiFunctions is empty!`);
+      }
+    }
+
     $('#holder').show();
     $('#loading').hide();
     $('#fname').html(p.fname);
