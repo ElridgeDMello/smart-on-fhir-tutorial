@@ -1,5 +1,5 @@
 (function(window){
-  var smartApiFunctions = null
+  var smartApiFunctions = null;
   window.extractData = function() {
     var ret = $.Deferred();
 
@@ -8,10 +8,11 @@
       ret.reject();
     }
 
-    function getSmartApiFunctions(smart) {
+    function getSmartApiFunctions({ smart }) {
         var functions = {
-            writeMName: function() {
-                console.log(`TODO: write middle name using smart api!`)
+            writeMName: function({ patient }) {
+                var ptId = patient.id;
+                console.log(`TODO: write middle name using smart api to patient id: `, ptId)
             }
         }
         return functions
@@ -72,7 +73,7 @@
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
-          smartApiFunctions = getSmartApiFunctions(smart)
+          smartApiFunctions = getSmartApiFunctions({ smart, patient: p })
           ret.resolve(p);
         });
       } else {
@@ -127,6 +128,14 @@
     }
   }
 
+  function callSmartApiWriteMName(p) {
+    if (smartApiFunctions && smartApiFunctions.writeMName) {
+        smartApiFunctions.writeMName({ patient: p });
+    } else {
+        console.log(`Boo! smartApiFunctions is empty!`);
+    }
+  }
+
   window.drawVisualization = function(p) {
     $('#holder').show();
     $('#loading').hide();
@@ -139,13 +148,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
-    $('#mnamebutton').onclick = function() {
-        if (smartApiFunctions) {
-          smartApiFunctions.writeMName()
-        } else {
-          console.log(`BOO! smartApiFunctions is empty!`)
-        }
-    }
+    document.getElementById("mnamebutton").addEventListener("click", callSmartApiWriteMName);
   };
 
 })(window);
