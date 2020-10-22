@@ -8,9 +8,9 @@
       ret.reject();
     }
 
-    function getSmartApiFunctions({ smart }) {
+    function getSmartApiFunctions({ smart, patient }) {
       var functions = {
-        writeMName: function({ patient }) {
+        writeMName: function() {
           var ptId = patient.id;
           console.log(
             `TODO: write middle name using smart api to patient id: `,
