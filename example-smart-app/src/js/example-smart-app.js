@@ -90,7 +90,7 @@
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
-          smartApiFunctions = getSmartApiFunctions({ smart, patient: p });
+          smartApiFunctions = getSmartApiFunctions({ smart, patient });
           ret.resolve(p);
         });
       } else {
