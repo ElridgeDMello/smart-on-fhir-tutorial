@@ -17,7 +17,7 @@
             ptId
           );
           patient.active = !patient.active;
-          var updatePromise = smart.api.update({ resource: patient });
+          var updatePromise = smart.patient.api.update({ resource: patient });
           console.log(`update called`);
           $.when(updatePromise).done(function(r) {
             console.log(`updated: `, r);
